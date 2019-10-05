@@ -12,7 +12,7 @@ variable "aws_secret_key" {
 
 variable "aws_region" {
   description = "The AWS region to create resources in."
-  default = "ca-central-1"
+  default = "us-east-1"
 }
 
 variable "s3_bucket_name" {

@@ -1,0 +1,19 @@
+{
+  "name": "testing-circle-ci",
+  "version": "1.0.0",
+  "description": "Repo for testing CI/CD with CirceCI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twebber90/testing-circle-ci.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twebber90/testing-circle-ci/issues"
+  },
+  "homepage": "https://github.com/twebber90/testing-circle-ci#readme"
+}

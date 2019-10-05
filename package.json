@@ -4,7 +4,7 @@
   "description": "Repo for testing CI/CD with CirceCI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test specified\"",
     "validate:circle-ci": "bash ./scripts/validate-circle-ci"
   },
   "repository": {

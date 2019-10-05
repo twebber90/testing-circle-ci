@@ -50,6 +50,9 @@ jobs:
     steps:
       - checkout # special step to check out source code to working directory
       - run:
+          name: initialize_terraform
+          command: terraform init
+      - run:
           name: run_terraform_plan
           command: terraform plan -var-file="terraform/env_vars/dev.tfvars" terraform
 

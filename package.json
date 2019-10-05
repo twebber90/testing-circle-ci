@@ -4,7 +4,8 @@
   "description": "Repo for testing CI/CD with CirceCI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "validate:circle-ci": "bash ./scripts/validate-circle-ci"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/twebber90/testing-circle-ci/issues"
   },
-  "homepage": "https://github.com/twebber90/testing-circle-ci#readme"
+  "homepage": "https://github.com/twebber90/testing-circle-ci#readme",
+  "devDependencies": {
+    "husky": "^3.0.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run validate:circle-ci"
+    }
+  }
 }

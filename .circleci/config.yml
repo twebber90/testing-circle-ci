@@ -54,7 +54,7 @@ jobs:
           command: terraform init terraform
       - run:
           name: run_terraform_plan
-          command: terraform plan -var="AWS_KEY=$TF_VAR_AWS_KEY" -var="AWS_SECRET=$TF_VAR_AWS_SECRET" -var-file="terraform/env_vars/dev.tfvars" terraform
+          command: terraform plan -var="aws_access_key=$TF_VAR_AWS_KEY" -var="aws_secret_key=$TF_VAR_AWS_SECRET" -var-file="terraform/env_vars/dev.tfvars" terraform
 
   deploy_dev:
     docker:

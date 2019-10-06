@@ -53,9 +53,6 @@ jobs:
           name: initialize_terraform
           command: terraform init terraform
       - run:
-          name: log_something
-          command: echo $TF_VAR_AWS_KEY
-      - run:
           name: run_terraform_plan
           command: terraform plan -var="aws_access_key=$TF_VAR_AWS_KEY" -var="aws_secret_key=$TF_VAR_AWS_SECRET" -var-file="terraform/env_vars/dev.tfvars" terraform
 
@@ -66,10 +63,10 @@ jobs:
     steps:
       - run:
           name: initialize_terraform
-          command: terraform init
+          command: terraform init terraform
       - run:
           name: run_terraform_apply
-          command: echo "Command to apply -> terraform apply -var-file=\"terraform/env_vars/dev.tfvars\" -auto-approve"
+          command: echo "Command to apply -> terraform apply -var=\"aws_access_key=$TF_VAR_AWS_KEY\" -var=\"aws_secret_key=$TF_VAR_AWS_SECRET\"  -var-file=\"terraform/env_vars/dev.tfvars\" -auto-approve"
 
   run_acceptance_tests:
     docker:
@@ -87,10 +84,10 @@ jobs:
     steps:
       - run:
           name: initialize_terraform
-          command: terraform init
+          command: terraform init terraform
       - run:
           name: run_terraform_apply
-          command: echo "Command to apply -> terraform apply -var-file=\"terraform/env_vars/prod.tfvars\" -auto-approve"
+          command: echo "Command to apply -> terraform apply -var=\"aws_access_key=$TF_VAR_AWS_KEY\" -var=\"aws_secret_key=$TF_VAR_AWS_SECRET\"  -var-file=\"terraform/env_vars/prod.tfvars\" -auto-approve"
 
 workflows:
   version: 2

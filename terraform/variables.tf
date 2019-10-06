@@ -4,12 +4,10 @@ variable "project_key" {
 
 variable "aws_access_key" {
   description = "The AWS access key."
-  default = "${var.AWS_KEY}"
 }
 
 variable "aws_secret_key" {
   description = "The AWS secret key."
-  default = "${var.AWS_SECRET}"
 }
 
 variable "aws_region" {

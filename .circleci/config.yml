@@ -53,6 +53,9 @@ jobs:
           name: initialize_terraform
           command: terraform init terraform
       - run:
+          name: log_something
+          command: echo $TF_VAR_AWS_KEY
+      - run:
           name: run_terraform_plan
           command: terraform plan -var="aws_access_key=$TF_VAR_AWS_KEY" -var="aws_secret_key=$TF_VAR_AWS_SECRET" -var-file="terraform/env_vars/dev.tfvars" terraform
 

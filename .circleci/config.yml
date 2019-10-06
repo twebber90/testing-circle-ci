@@ -66,7 +66,7 @@ jobs:
           command: terraform init
       - run:
           name: run_terraform_apply
-          command: echo "Command to apply -> terraform apply -var-file=\"terraform/env_vars/dev.tfvars\""
+          command: echo "Command to apply -> terraform apply -var-file=\"terraform/env_vars/dev.tfvars\" -auto-approve"
 
   run_acceptance_tests:
     docker:
@@ -87,7 +87,7 @@ jobs:
           command: terraform init
       - run:
           name: run_terraform_apply
-          command: echo "Command to apply -> terraform apply -var-file=\"terraform/env_vars/prod.tfvars\""
+          command: echo "Command to apply -> terraform apply -var-file=\"terraform/env_vars/prod.tfvars\" -auto-approve"
 
 workflows:
   version: 2

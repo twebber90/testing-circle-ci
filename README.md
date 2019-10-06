@@ -1,6 +1,8 @@
 # testing-circle-ci
 Repo for testing with CircleCI
 
+[![CircleCI](https://circleci.com/gh/twebber90/testing-circle-ci.svg?style=svg)](https://circleci.com/gh/twebber90/testing-circle-ci)
+
 ## Info about POC
 
 #### Circle CI

@@ -1,6 +1,6 @@
 project_key         = "iron-comps-frontend"
-aws_access_key      = "${var.AWS_KEY}"
-aws_secret_key      = "${var.AWS_SECRET}"
+aws_access_key      = "XXXXXXXXXXXXXX"
+aws_secret_key      = "XXXXXXXXXXXXXX"
 aws_region          = "us-east-1"
 s3_bucket_name      = "iron-comps-frontend-dev"
 s3_bucket_env       = "dev"

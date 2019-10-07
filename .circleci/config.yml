@@ -80,6 +80,9 @@ jobs:
       - image: infrastructureascode/aws-cli
       - image: mongo:4.2.0
     steps:
+      - run:
+          name: get_certificates
+          command: apk add ca-certificates
       - attach_workspace:
           at: ~/testing-circle-ci/build
       - run:

@@ -129,15 +129,21 @@ workflows:
       - check_terraform:
           requires:
             - test
-      - deploy_dev:
+      - deploy_infrastructure_dev:
           requires:
             - check_terraform
           filters:
             branches:
               only: master
+      - deploy_code_dev:
+          requires:
+            - deploy_infrastructure_dev
       - run_acceptance_tests:
           requires:
-            - deploy_dev
-      - deploy_prod:
+            - deploy_code_dev
+      - deploy_infrastructure_prod:
           requires:
             - run_acceptance_tests
+      - deploy_code_prod:
+          requires:
+            - deploy_infrastructure_prod

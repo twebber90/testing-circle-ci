@@ -20,6 +20,13 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
+      - run:
+          name: build_app
+          command: npm run build
+      - persist_to_workspace:
+          root: build
+          paths:
+            - app
 
   test:
     docker:
@@ -56,7 +63,7 @@ jobs:
           name: run_terraform_plan
           command: terraform plan -var="aws_access_key=$TF_VAR_AWS_KEY" -var="aws_secret_key=$TF_VAR_AWS_SECRET" -var-file="terraform/env_vars/dev.tfvars" terraform
 
-  deploy_dev:
+  deploy_infrastructure_dev:
     docker:
       - image: hashicorp/terraform
       - image: mongo:4.2.0
@@ -68,6 +75,17 @@ jobs:
           name: run_terraform_apply
           command: echo "Command to apply -> terraform apply -var=\"aws_access_key=$TF_VAR_AWS_KEY\" -var=\"aws_secret_key=$TF_VAR_AWS_SECRET\"  -var-file=\"terraform/env_vars/dev.tfvars\" -auto-approve"
 
+  deploy_code_dev:
+    docker:
+      - image: infrastructureascode/aws-cli
+      - image: mongo:4.2.0
+    steps:
+      - attach_workspace:
+          at: ~/testing-circle-ci/build
+      - run:
+          name: copy_code_to_s3
+          command: echo "Command to copy -> aws s3 cp app s3://iron-comps-frontend-dev/ --recursive"
+
   run_acceptance_tests:
     docker:
       - image: cypress/base
@@ -77,7 +95,7 @@ jobs:
           name: deploy-to-aws
           command: echo "Run Acceptance Tests against deployed environment to act as gate to prod"
 
-  deploy_prod:
+  deploy_infrastructure_prod:
     docker:
       - image: hashicorp/terraform
       - image: mongo:4.2.0
@@ -88,6 +106,17 @@ jobs:
       - run:
           name: run_terraform_apply
           command: echo "Command to apply -> terraform apply -var=\"aws_access_key=$TF_VAR_AWS_KEY\" -var=\"aws_secret_key=$TF_VAR_AWS_SECRET\"  -var-file=\"terraform/env_vars/prod.tfvars\" -auto-approve"
+
+  deploy_code_prod:
+    docker:
+      - image: infrastructureascode/aws-cli
+      - image: mongo:4.2.0
+    steps:
+      - attach_workspace:
+          at: ~/testing-circle-ci/build
+      - run:
+          name: copy_code_to_s3
+          command: echo "Command to copy -> aws s3 cp app s3://iron-comps-frontend-prod/ --recursive"
 
 workflows:
   version: 2

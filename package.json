@@ -4,6 +4,7 @@
   "description": "Repo for testing CI/CD with CirceCI",
   "main": "index.js",
   "scripts": {
+    "build": "echo \"No build script exists\"",
     "test": "echo \"No test specified\"",
     "validate:circle-ci": "bash ./scripts/validate-circle-ci"
   },

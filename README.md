@@ -18,8 +18,10 @@ The steps in the config file for the pipeline are as follows:
 * test (would be Unit Tests)
 * check_terraform (runs terraform plan to check for any changes to the AWS infrastructure)
 ##### Run On Master
-* deploy_dev
+* deploy_infrastructure_dev
+* deploy_code_dev
 * run_acceptance_tests (would be Acceptance Tests)
-* deploy_prod
+* deploy_infrastructure_prod
+* deploy_code_prod
 
 I used [this blog](https://rangle.io/blog/frontend-app-in-aws-with-terraform/) as the basis for the structuring we would use for the front end. The infrastructure is basically the same as our current front end but with a few additions. The code is stored in s3, but I've added replication to another region. I also created a CloudFront Distribution to serve up the s3 code. CloudFront allows for caching at the edge to help improve performance and reduce latency.
